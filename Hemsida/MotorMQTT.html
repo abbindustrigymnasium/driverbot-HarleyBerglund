@@ -32,24 +32,22 @@
                     left: '50%',
                     top: '50%'
                 },
-                size: radius * 2,
-                color: 'black'
+                threshold: 100,
+                size: radius * 4,
+                color: 'black',
+                catchDistance: Number,
             };
 
             var joystick;
             var position;
             joystick = nipplejs.create(sampleJoystick);
-            joystick.on('start end', function (evt, data) {
-                position = data;
-            }).on('move', function (evt, data) {
-                position = data;
-            }).on('dir:up plain:up dir:left plain:left dir:down' +
-                'plain:down dir:right plain:right',
-                function (evt, data) {
-                    //position=data;
-                }
-            ).on('pressure', function (evt, data) {
-                position = data;
+            joystick.on('move', function (evt, data) {
+                xValue = Math.round(data.position.x);
+                //console.log(xValue);
+                output2 = xValue;
+                onServo();
+                yValue = Math.round(data.position.y);
+                console.log(yValue);
             });
         </script>
 

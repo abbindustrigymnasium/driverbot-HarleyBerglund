@@ -18,12 +18,12 @@ document.addEventListener('keypress', function (event) {
     }
 
     if (key === 'a' || key === 65) {
-        output2 = 0;
+        output2 = 121;
         onServo();
         document.addEventListener("keyup", keyUP);
     }
     if (key === 'd' || key === 68) {
-        output2 = 2;
+        output2 = 521;
         onServo();
         document.addEventListener("keyup", keyUP);
     }
@@ -49,6 +49,6 @@ document.addEventListener('keyup', function (event) {
 })
 
 function keyUP() {
-    output2 = 1;
+    output2 = 321;
     onServo();
 }

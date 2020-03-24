@@ -31,7 +31,7 @@ function onFail() {
 
 // Called when the client connects
 function onConnect() {
-    startServo = "1";
+    startServo = "321";
     mess3 = `(${startServo})`;
     message = new Paho.MQTT.Message(mess3);
     message.destinationName = "harley@berglun.se/servo";
