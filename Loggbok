@@ -1,0 +1,17 @@
+2020-03-19
+Jag försökte att bygga en robot av min lego buggatti chiron. Dock blev denna alldeles för tung för motorn, så 
+jag bestämde mig för att jag skulle bygga en mindre som motorn skulle klara av att driva. 
+
+2020-03-22
+Byggde min andra robot hemma med mitt egna lego. Den är fyrhjulsdriven, med bak och framstyrning.
+(Kommer inte exakt ihåg vilken dag jag gjorde Arduino koden till den, men jag tror att det var den 18-19)
+Den fungar att köra från en enkel html hemsida. 
+
+2020-03-23 
+Jobbade på att få in en joystick i hemsidan, med många motgångar. Tillslut fick jag till en som jag ska fortsätta med nästa gång. 
+Jag lade även till så att man kan styra roboten med knappar på tangentbordet. 
+Eftersom grunderna till min robot är bra och robusta, började jag att tänka på speciella funktioner. Jag fick iden att jag skulle ladda
+upp powerbanken som driver min robot med en liten solpanel som jag har liggandes. Jag bestämde även mig för att montera en FPV kamera, som
+man kan se live med ett par glasögon. Jag ville från början få in videon på hemsidan, men insåg att det inte kommer att gå med MQTT. Om
+jag får tid över senar vill jag försöka att lösa det. 
+
