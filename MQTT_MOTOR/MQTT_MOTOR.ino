@@ -48,8 +48,8 @@ void onConnectionEstablished(){
     client.subscribe("harley@berglun.se/servo", [] (const String &payload2){    
     int SERVO = payload2.substring(1, payload2.indexOf(',')).toInt();
 
-    Serial.println(SERVal);
-    My_servo.write(SERVal);
+    Serial.println(SERVO);
+    My_servo.write(SERVO);
   });
   }
 
