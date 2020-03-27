@@ -18,7 +18,7 @@ document.addEventListener('keypress', function (event) {
     }
 
     if (key === 'a' || key === 65) {
-        output2 = 170;
+        output2 = 160;
         onServo();
         document.addEventListener("keyup", keyUP);
     }

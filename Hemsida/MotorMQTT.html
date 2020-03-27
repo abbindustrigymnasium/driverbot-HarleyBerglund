@@ -10,9 +10,11 @@
     </script>
     <script type="text/javascript" src="Keys.js"></script>
     <script type="text/javascript" src="Connect.js"></script>
+    <script type="text/javascript" src="Mapping.js"></script>
+
 </head>
 
-<body style="background-color:grey;">
+<body style="background-color:lightgrey;">
     <!-- Header
     ............................................................................................ -->
     <div class="topnav" align="center" class="wrapper">
@@ -41,13 +43,36 @@
             var joystick;
             var position;
             joystick = nipplejs.create(sampleJoystick);
-            joystick.on('move', function (evt, data) {
+            joystick.on('start end', function (evt, data) {
+                position = data;
+            }).on('move', function (evt, data) {
+                //position = data;
                 xValue = Math.round(data.position.x);
-                //console.log(xValue);
-                output2 = xValue;
-                onServo();
                 yValue = Math.round(data.position.y);
-                console.log(yValue);
+
+                //console.log("X: " + xValue)
+                //console.log("Y: " + yValue)
+
+                if (yValue > 410) {
+                    var yBack = Math.round(map(yValue, 410, 610, 900, 1024));
+                    POWER = 1;
+                    output = yBack;
+                    // console.log(yBack);
+                    onMotor();
+
+                } else if (yValue < 410) {
+                    var yForward = Math.round(map(yValue, 410, 210, 900, 1024));
+                    POWER = 0;
+                    output = yForward;
+                    // console.log(yForward);
+                    onMotor();
+
+                }
+
+                var Steering = Math.round(map(xValue, 210, 610, 180, 0));
+                    output2 = Steering;
+                    onServo();
+                    
             });
         </script>
 
