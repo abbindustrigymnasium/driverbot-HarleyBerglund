@@ -12,7 +12,7 @@ void onConnectionEstablished();
 Servo My_servo;
 
 EspMQTTClient client(
- "Berglund",           // Wifi ssid  ABB_Indgym_Guest
+  "Berglund",           // Wifi ssid  ABB_Indgym_Guest
   "71032104107103210410710321",               // Wifi password   Welcome2abb
   "maqiatto.com",              // MQTT broker ip
   1883,                        // MQTT broker port
@@ -24,7 +24,7 @@ EspMQTTClient client(
   true                         // Enable debug messages
 );
 
-void setup(){
+void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   analogWrite(LED_BUILTIN, 0);
   Serial.begin(115200);
@@ -34,10 +34,10 @@ void setup(){
   My_servo.write(90);
 }
 
-void onConnectionEstablished(){
-  client.subscribe("harley@berglun.se/motor", [] (const String &payload1){    
+void onConnectionEstablished() {
+  client.subscribe("harley@berglun.se/motor", [] (const String & payload1) {
     int Power = payload1.substring(1, payload1.indexOf(',')).toInt();
-    int Strength = payload1.substring(payload1.lastIndexOf(',') + 1).toInt();   
+    int Strength = payload1.substring(payload1.lastIndexOf(',') + 1).toInt();
 
     Serial.println(Strength);
     Serial.println(Power);
@@ -45,15 +45,15 @@ void onConnectionEstablished(){
     analogWrite(motorPinRightSpeed, Strength);
   });
 
-    client.subscribe("harley@berglun.se/servo", [] (const String &payload2){    
+  client.subscribe("harley@berglun.se/servo", [] (const String & payload2) {
     int SERVO = payload2.substring(1, payload2.indexOf(',')).toInt();
 
     Serial.println(SERVO);
     My_servo.write(SERVO);
   });
-  }
+}
 
 
-void loop(){
-    client.loop();
+void loop() {
+  client.loop();
 }
