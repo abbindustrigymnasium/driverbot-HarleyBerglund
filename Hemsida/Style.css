@@ -7,7 +7,7 @@
     width: 50%;
     height: 15px;
     font-family: Arial;
-    font-size: 40px;
+    font-size: 100px;
     color: white;
 }
 
@@ -28,6 +28,7 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #333;
+    height: 250px;
 }
 
 .topnav a {
@@ -47,4 +48,8 @@ body {
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+}
+
+.joyStick {
+    justify-items: center;
 }

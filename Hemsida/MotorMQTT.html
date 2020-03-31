@@ -21,9 +21,9 @@
         <h1 class="text1">
             MotorMQTT
         </h1>
+    </div>
 
-
-
+    <div id="joyStick">
         <script type="text/javascript" src="./nipplejs.js"></script>
         <script type="text/javascript">
             var radius = 100;
@@ -37,7 +37,7 @@
                 threshold: 100,
                 size: radius * 4,
                 color: 'black',
-                catchDistance: Number,
+
             };
 
             var joystick;
@@ -49,25 +49,33 @@
                 //position = data;
                 xValue = Math.round(data.position.x);
                 yValue = Math.round(data.position.y);
-
                 //console.log("X: " + xValue)
                 //console.log("Y: " + yValue)
 
-                if (yValue > 410) {
-                    var yBack = Math.round(map(yValue, 410, 610, 900, 1024));
+                if (yValue > 280) {
+                    var yBack = Math.round(map(yValue, 322, 522, 900, 1024));
                     POWER = 1;
                     output = yBack;
                     // console.log(yBack);
                     onMotor();
 
-                } else if (yValue < 410) {
-                    var yForward = Math.round(map(yValue, 410, 210, 900, 1024));
+                } else if (yValue < 366) {
+                    var yForward = Math.round(map(yValue, 322, 122, 900, 1024));
                     POWER = 0;
                     output = yForward;
                     // console.log(yForward);
                     onMotor();
 
                 }
+                if ( yValue > 280 && yValue < 366 ) {
+                    var yStop = 0;
+                    POWER = 0;
+                    output = yStop;
+                    // console.log(yBack);
+                    onMotor();
+
+                }
+                
 
                 var Steering = Math.round(map(xValue, 210, 610, 180, 0));
                     output2 = Steering;
@@ -75,7 +83,7 @@
                     
             });
         </script>
-
+    </div>
 </body>
 
 </html>
