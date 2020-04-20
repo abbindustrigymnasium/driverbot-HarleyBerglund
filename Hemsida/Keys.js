@@ -1,4 +1,3 @@
-
 document.addEventListener('keypress', function (event) {
     if (event.defaultPrevented) {
         return;
@@ -26,6 +25,11 @@ document.addEventListener('keypress', function (event) {
         output2 = 20;
         onServo();
         document.addEventListener("keyup", keyUP);
+    }
+    if (key === 'o' || key === 79) {
+        POWER = 1;
+        output = 0;
+        onMotor();
     }
 })
 
