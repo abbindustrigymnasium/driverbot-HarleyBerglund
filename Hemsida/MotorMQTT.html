@@ -11,10 +11,14 @@
     <script type="text/javascript" src="Keys.js"></script>
     <script type="text/javascript" src="Connect.js"></script>
     <script type="text/javascript" src="Mapping.js"></script>
+    <script type="text/javascript" src="joy.js"></script>
+    <script type="text/javascript" src="Joystick.js"></script>
+    <script type="text/javascript" src="joy.min.js"></script>
+
 
 </head>
 
-<body style="background-color:lightgrey;">
+<body>
     <!-- Header
     ............................................................................................ -->
     <div class="topnav" align="center" class="wrapper">
@@ -23,7 +27,8 @@
         </h1>
     </div>
 
-    <div id="joyStick">
+    </head>
+    - <div id="joyStick">
         <script type="text/javascript" src="./nipplejs.js"></script>
         <script type="text/javascript">
             var radius = 100;
@@ -67,7 +72,7 @@
                     onMotor();
 
                 }
-                if ( yValue > 280 && yValue < 366 ) {
+                if (yValue > 280 && yValue < 366) {
                     var yStop = 0;
                     POWER = 0;
                     output = yStop;
@@ -75,15 +80,14 @@
                     onMotor();
 
                 }
-                
+
 
                 var Steering = Math.round(map(xValue, 210, 610, 180, 0));
-                    output2 = Steering;
-                    onServo();
-                    
+                output2 = Steering;
+                onServo();
+
             });
         </script>
-    </div>
 </body>
 
 </html>
