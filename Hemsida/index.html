@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="Style.css">
+
 
 <head>
     <meta charset="utf-8">
-    <title>MotorMQTT</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <title>Driverbot</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript">
     </script>
     <script type="text/javascript" src="Keys.js"></script>
     <script type="text/javascript" src="Connect.js"></script>
     <script type="text/javascript" src="Mapping.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="Style.css">
 </head>
 
 <body>
-    <div id="joyStick">
+    <ul>
+        <li><a href="#" class="round red">START<span class="round">But only if you really, really want to. </span></a>
+        </li>
+    </ul>
+    <script>
+        function hideDIV() {
+            $("div").hide();
+        }
+        $(document).ready(function () {
+            $("ul").click(function () {
+                $("div").show();
+                $("ul").hide();
+            });
+        });
+    </script>
+
+
+    <div class="joyStick" id="joyStick">
         <script type="text/javascript" src="./nipple.js"></script>
         <script type="text/javascript">
             var radius = 100;
@@ -28,7 +48,7 @@
                     top: '50%'
                 },
                 threshold: 100,
-                size: w / 3,
+                size: h / 3,
                 color: 'black',
 
             };
@@ -60,11 +80,17 @@
                     //console.log("down");
                     onMotor();
                 }
+                if (Distance > 0 && Distance < 10){
+                    output = 0;
+                    onMotor();
+                }
+
                 Speed = Math.round(map(Distance, 0, 90, 700, 1024));
                 output = Speed;
                 onMotor();
             });
         </script>
+    </div>
 </body>
 
 </html>

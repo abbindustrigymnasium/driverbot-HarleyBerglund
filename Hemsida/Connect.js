@@ -21,6 +21,7 @@ window.onload = function startConnect() {
         onSuccess: onConnect,
         onFailure: onFail,
     });
+    hideDIV();
 }
 
 function onFail() {
@@ -74,7 +75,6 @@ function onServo() {
 
 // Called when the client loses its connection
 function onConnectionLost(responseObject) {
-    //document.getElementById("messages").innerHTML += '<span>ERROR: Connection lost</span><br/>';
     if (responseObject.errorCode !== 0) {
         document.getElementById("messages").innerHTML += '<span>ERROR: ' + +responseObject.errorMessage +
             '</span><br/>';
@@ -92,5 +92,4 @@ function onMessageArrived(message) {
 function startDisconnect() {
     client.disconnect();
     window.location.reload();
-    // document.getElementById("messages").innerHTML += '<span>Disconnected</span><br/>';
 }
