@@ -18,7 +18,7 @@
 
 <body>
     <ul>
-        <li><a href="#" class="round red">START<span class="round">But only if you really, really want to. </span></a>
+        <li><a href="#" class="round red">START<span class="round">Press this button to start!</span></a>
         </li>
     </ul>
     <script>
@@ -33,11 +33,9 @@
         });
     </script>
 
-
     <div class="joyStick" id="joyStick">
         <script type="text/javascript" src="./nipple.js"></script>
         <script type="text/javascript">
-            var radius = 100;
             var w = window.innerWidth;
             var h = window.innerHeight;
 
@@ -48,7 +46,7 @@
                     top: '50%'
                 },
                 threshold: 100,
-                size: h / 3,
+                size: w / 3,
                 color: 'black',
 
             };
@@ -57,13 +55,16 @@
             joystick = nipplejs.create(sampleJoystick);
             joystick.on('start end', function (evt, data) {}).on('move', function (evt, data) {
 
+                // ........................Servo................................
                 xValue = Math.round(data.position.x)
-                var xStrength = (w / xValue);
-                //console.log(xStrength);
+                var xServo = ((w-(w/3)) / xValue);
+                //console.log(xServo);
 
-                var Steering = Math.round(map(xStrength * 100, 150, 300, 0, 180));
+                var Steering = Math.round(map(xServo * 1000, 1000, 2000, 0, 180));
                 output2 = Steering;
                 onServo();
+
+                //.........................Motor................................
 
                 Distance = Math.round(data.distance);
                 //console.log(Distance);
@@ -80,14 +81,16 @@
                     //console.log("down");
                     onMotor();
                 }
-                if (Distance > 0 && Distance < 10){
+                if (Distance > 0 && Distance < 25){
                     output = 0;
                     onMotor();
                 }
 
-                Speed = Math.round(map(Distance, 0, 90, 700, 1024));
+                Speed = Math.round(map(Distance, 30, 90, 700, 1024));
                 output = Speed;
                 onMotor();
+
+                //.............................................................
             });
         </script>
     </div>
