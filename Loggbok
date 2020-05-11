@@ -15,3 +15,12 @@ upp powerbanken som driver min robot med en liten solpanel som jag har liggandes
 man kan se live med ett par glasögon. Jag ville från början få in videon på hemsidan, men insåg att det inte kommer att gå med MQTT. Om
 jag får tid över senar vill jag försöka att lösa det. 
 
+
+2020-03-31
+FPV kameran som jag tänkte använde gick tyvärr av någon okänd anledning sönder, så den kan jag inte använda i mitt projekt. Istället valde
+jag att lägga till lite andra specialfunktioner, som en oled display, belysning under bilen och statuslampor på taket. 
+Jag jobbar vidare på joysticken för att kunna  styra bilen. 
+
+2020-04-20
+Nu är äntligen joysticken klar. Det var lite problem med den då den ändrade värde efter storleken på skärmen, så jag fick ta fram en formel
+som kunde räkna ut det rätta värdet. Jag har även börjat lite med mina specialfunktioner. 
