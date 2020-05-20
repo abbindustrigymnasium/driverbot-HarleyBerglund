@@ -11,6 +11,9 @@
 #define RED_LED 13      //D7
 #define LED_Strip 14      //D5
 
+int Strength;
+int Power;
+
 unsigned long time_now;
 
 void onConnectionEstablished();
@@ -32,10 +35,5 @@ void setup() {
 
 void loop() {
   client.loop();
-
-  if (millis() > time_now + 2000){
-   oledScreen();                                     //Looping the oledScreen() every 2 seconds
-   time_now = millis();
-}
 
 }

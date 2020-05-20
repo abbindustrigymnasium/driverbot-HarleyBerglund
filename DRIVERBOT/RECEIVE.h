@@ -20,4 +20,5 @@ void onConnectionEstablished() {
     //Serial.println(SERVO);
     My_servo.write(SERVO);
   });
+  oledScreen();
 }
