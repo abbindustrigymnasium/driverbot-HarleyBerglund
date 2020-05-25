@@ -57,7 +57,7 @@
 
                 // ........................Servo................................
                 xValue = Math.round(data.position.x)
-                var xServo = ((w-(w/3)) / xValue);
+                var xServo = ((w - (w / 3)) / xValue);
                 //console.log(xServo);
 
                 var Steering = Math.round(map(xServo * 1000, 1000, 2000, 0, 180));
@@ -81,7 +81,7 @@
                     //console.log("down");
                     onMotor();
                 }
-                if (Distance > 0 && Distance < 25){
+                if (Distance > 0 && Distance < 25) {
                     output = 0;
                     onMotor();
                 }

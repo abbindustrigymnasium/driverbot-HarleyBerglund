@@ -19,14 +19,9 @@ window.onload = function startConnect() {
         userName: "harley@berglun.se",
         password: "HEJHEJ",
         onSuccess: onConnect,
-        onFailure: onFail,
     });
     hideDIV();
-}
 
-function onFail() {
-    //document.getElementById("messages").innerHTML += '<span>ERROR: Connection to: ' + host + ' on port: ' +
-    port + ' failed.</span><br/>'
 }
 
 
@@ -49,11 +44,6 @@ function onMotor() {
     let power = this.POWER;
     let strength = this.output;
     let mess2 = `(${power},${strength})`;
-
-    //console.log(mess2);
-    //message = new Paho.MQTT.Message(mess2);
-
-
     message = new Paho.MQTT.Message(mess2);
     message.destinationName = "harley@berglun.se/motor";
     client.send(message);
@@ -62,14 +52,18 @@ function onMotor() {
 function onServo() {
     let servo = this.output2;
     let mess1 = `(${servo})`;
-
-    //console.log(mess1);
-    //message = new Paho.MQTT.Message(mess2);
-
-
     message = new Paho.MQTT.Message(mess1);
     message.destinationName = "harley@berglun.se/servo";
     client.send(message);
+}
+
+function onLampa() {
+    let LampValue = this.lampVal;
+    let LampMessage = `(${LampValue})`;
+    message = new Paho.MQTT.Message(LampMessage);
+    message.destinationName = "harley@berglun.se/lampa";
+    client.send(message);
+    //console.log(LampMessage)
 }
 
 

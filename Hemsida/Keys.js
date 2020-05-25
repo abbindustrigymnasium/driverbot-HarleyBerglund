@@ -31,6 +31,17 @@ document.addEventListener('keypress', function (event) {
         output = 0;
         onMotor();
     }
+
+    if (key === 'p' || key === 80) {
+        lampVal = 1;
+        onLampa();
+    }
+    if (key === 'å' || key === 221) {
+        lampVal = 0;
+        onLampa();
+    }
+
+
 })
 
 document.addEventListener('keyup', function (event) {
