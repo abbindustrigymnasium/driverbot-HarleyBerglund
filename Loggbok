@@ -18,9 +18,12 @@ jag får tid över senar vill jag försöka att lösa det.
 
 2020-03-31
 FPV kameran som jag tänkte använde gick tyvärr av någon okänd anledning sönder, så den kan jag inte använda i mitt projekt. Istället valde
-jag att lägga till lite andra specialfunktioner, som en oled display, belysning under bilen och statuslampor på taket. 
+jag att lägga till lite andra specialfunktioner, som belysning under bilen och statuslampor på taket. 
 Jag jobbar vidare på joysticken för att kunna  styra bilen. 
 
 2020-04-20
 Nu är äntligen joysticken klar. Det var lite problem med den då den ändrade värde efter storleken på skärmen, så jag fick ta fram en formel
 som kunde räkna ut det rätta värdet. Jag har även börjat lite med mina specialfunktioner. 
+
+2020-06-01 
+Jag har jobbat lite i små omgångar med lite småjusteringar på framför allt hemsdian. Nu ska jag kommentera koden och fixa eventuella buggar. 

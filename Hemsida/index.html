@@ -2,7 +2,6 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
@@ -10,19 +9,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript">
     </script>
     <script type="text/javascript" src="Keys.js"></script>
+    <!--Including the JS files--->
     <script type="text/javascript" src="Connect.js"></script>
     <script type="text/javascript" src="Mapping.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--Including the jquery--->
     <link rel="stylesheet" href="Style.css">
+    <!--Including the CSS file--->
 </head>
 
 <body>
     <ul>
         <li><a href="#" class="round red">START<span class="round">Press this button to start!</span></a>
+            <!--The startion button which shows the joystick when clicked--->
         </li>
     </ul>
     <script>
-        function hideDIV() {
+        function hideDIV() { //This is a function which hides the div that the joystick is in
             $("div").hide();
         }
         $(document).ready(function () {
@@ -36,59 +39,51 @@
     <div class="joyStick" id="joyStick">
         <script type="text/javascript" src="./nipple.js"></script>
         <script type="text/javascript">
-            var w = window.innerWidth;
+            var w = window.innerWidth; //Get the window width and height
             var h = window.innerHeight;
 
-            var sampleJoystick = {
+            var sampleJoystick = { //Some prefferenses of the joystick
                 mode: 'static',
                 position: {
                     left: '50%',
                     top: '50%'
                 },
                 threshold: 100,
-                size: w / 3,
+                size: w / 3, //Adjusting the size of the joystick depending on the window width
                 color: 'black',
 
             };
 
             var joystick;
-            joystick = nipplejs.create(sampleJoystick);
+            joystick = nipplejs.create(sampleJoystick); //Creating the joystick
             joystick.on('start end', function (evt, data) {}).on('move', function (evt, data) {
 
                 // ........................Servo................................
-                xValue = Math.round(data.position.x)
-                var xServo = ((w - (w / 3)) / xValue);
-                //console.log(xServo);
+                xValue = Math.round(data.position.x); //Rounding the x value
+                var xServo = ((w - (w / 3)) /
+                xValue); //Since the w value depends on the window size i used the window width to get the same value on all window sizes
 
-                var Steering = Math.round(map(xServo * 1000, 1000, 2000, 0, 180));
-                output2 = Steering;
-                onServo();
+                var Steering = Math.round(map(xServo * 1000, 1000, 2000, 0,
+                180)); // Takes the xServo value and multiplies it with 1000 and then maping the min 1000 and max 2000 to 0-180
+                onServo(output2 = Steering); //Using the values in the onServo function 
 
                 //.........................Motor................................
 
-                Distance = Math.round(data.distance);
-                //console.log(Distance);
-                Degree = Math.round(data.angle.degree);
-                //console.log(Degree);
+                Distance = Math.round(data.distance); //Distance from the center of the joystick
+                Degree = Math.round(data.angle.degree); //The angle on the joystick
 
                 if (Degree > 20 && Degree < 160) {
-                    POWER = 0;
-                    //console.log("up");
-                    onMotor();
+                    onMotor(POWER = 0);
                 }
                 if (Degree > 200 && Degree < 340) {
-                    POWER = 1;
-                    //console.log("down");
-                    onMotor();
+                    onMotor(POWER = 1);
                 }
                 if (Distance > 0 && Distance < 25) {
-                    output = 0;
-                    onMotor();
+                    onMotor(output = 0);
                 }
 
-                Speed = Math.round(map(Distance, 30, 90, 700, 1024));
-                output = Speed;
-                onMotor();
+                Speed = Math.round(map(Distance, 30, 90, 700, 1024)); //The speed depending on the distance fron the center of the joystick
+                onMotor(output = Speed);
 
                 //.............................................................
             });

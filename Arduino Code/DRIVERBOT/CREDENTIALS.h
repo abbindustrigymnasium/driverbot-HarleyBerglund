@@ -1,3 +1,5 @@
+//The MQTT credentials
+
 EspMQTTClient client(
   "Berglund",             // Wifi ssid  ABB_Indgym_Guest
   "71032104107103210410710321",                 // Wifi password   Welcome2abb

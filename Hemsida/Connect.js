@@ -6,9 +6,6 @@ window.onload = function startConnect() {
     host = "maqiatto.com";
     port = 8883;
 
-    '</span><br/>';
-
-    '</span><br/>';
     // Initialize new Paho client connection
     client = new Paho.MQTT.Client(host, Number(port), clientID);
     // Set callback handlers
@@ -16,62 +13,53 @@ window.onload = function startConnect() {
     client.onMessageArrived = onMessageArrived;
 
     client.connect({
-        userName: "harley@berglun.se",
+        userName: "harley@berglun.se", //MQTT credentials
         password: "HEJHEJ",
         onSuccess: onConnect,
     });
-    hideDIV();
+    hideDIV(); //hiding the joystick on page load
 
 }
 
 
 // Called when the client connects
+//Centers the servo and stops the motor if it is on
 function onConnect() {
-    startServo = "90";
-    mess3 = `(${startServo})`;
-    message = new Paho.MQTT.Message(mess3);
-    message.destinationName = "harley@berglun.se/servo";
-    client.send(message);
-
-    startMotor = "0";
-    mess4 = `(${startMotor},${startMotor})`;
-    message = new Paho.MQTT.Message(mess4);
-    message.destinationName = "harley@berglun.se/motor";
-    client.send(message);
+    onMotor(output = 0);
+    onServo(output2 = 90)
 }
 
 function onMotor() {
-    let power = this.POWER;
-    let strength = this.output;
-    let mess2 = `(${power},${strength})`;
-    message = new Paho.MQTT.Message(mess2);
-    message.destinationName = "harley@berglun.se/motor";
-    client.send(message);
+    let power = this.POWER; //Fetching POWER and sets the variable to power. This is the direction of the motor
+    let strength = this.output; //Fetching output and sets the variable to strength. This is the motor speed
+    let mess2 = `(${power},${strength})`; //Takes the int inputs and puts them between parentheses like (1,1024) and turns it into a sting
+    message = new Paho.MQTT.Message(mess2); //Creating the message 
+    message.destinationName = "harley@berglun.se/motor"; //Where the message will be sent to 
+    client.send(message); //Sending the message
 }
 
 function onServo() {
-    let servo = this.output2;
-    let mess1 = `(${servo})`;
-    message = new Paho.MQTT.Message(mess1);
-    message.destinationName = "harley@berglun.se/servo";
-    client.send(message);
+    let servo = this.output2; //Fetching output2 and sets the variable to servo. This is the stearing angle
+    let mess1 = `(${servo})`; //Takes the int input and puts it between parentheses like (90) and turns it into a sting
+    message = new Paho.MQTT.Message(mess1); //Creating the message 
+    message.destinationName = "harley@berglun.se/servo"; //Where the message will be sent to 
+    client.send(message); //Sending the message
 }
 
 function onLampa() {
-    let LampValue = this.lampVal;
-    let LampMessage = `(${LampValue})`;
-    message = new Paho.MQTT.Message(LampMessage);
-    message.destinationName = "harley@berglun.se/lampa";
-    client.send(message);
-    //console.log(LampMessage)
+    let LampValue = this.lampVal;  //Fetching lampVal and sets the variable to LampValue. This is the led strip
+    let LampMessage = `(${LampValue})`; //Takes the int input and puts it between parentheses like (1000) and turns it into a sting
+    message = new Paho.MQTT.Message(LampMessage); //Creating the message 
+    message.destinationName = "harley@berglun.se/lampa"; //Where the message will be sent to
+    client.send(message); //Sending the message
 }
-
 
 // Called when the client loses its connection
 function onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
         document.getElementById("messages").innerHTML += '<span>ERROR: ' + +responseObject.errorMessage +
             '</span><br/>';
+        onMotor(POWER = 1, output = 0);
     }
 }
 
