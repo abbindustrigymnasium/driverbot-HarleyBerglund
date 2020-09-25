@@ -1,8 +1,8 @@
 //The MQTT credentials
 
 EspMQTTClient client(
-  "Berglund",             // Wifi ssid  ABB_Indgym_Guest
-  "71032104107103210410710321",                 // Wifi password   Welcome2abb
+  "Harleys iPhone",             // Wifi ssid  ABB_Indgym_Guest
+  "hejhoj123",                 // Wifi password   Welcome2abb
   "maqiatto.com",              // MQTT broker ip
   1883,                        // MQTT broker port
   "harley@berglun.se",         // MQTT username
